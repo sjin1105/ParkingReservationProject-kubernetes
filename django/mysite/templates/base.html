@@ -1,0 +1,286 @@
+{% load static %}
+<!doctype html>
+<html lang="ko">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">
+    <!-- pybo CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+    <title>차와 주차장을 이어주는 차잇다</title>
+    <style>
+        @font-face {
+            font-family: 'S-CoreDream-3Light';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        * {
+            font-family: 'S-CoreDream-3Light';
+            color: #333;
+        }
+        #wrap {
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /*----------- nav area start -----------*/
+        .nav {
+            width:80%;
+            margin: 0 auto;
+            height: 7vh;
+        }
+        .nav.navbar {
+            --bs-navbar-padding-y: 1.5rem !important;
+        }
+        .nav .hdbox a#logo {
+            display: block;
+            text-indent: -9999px; 
+            background-image: url(../../static/logo-png.png);
+            background-position: left;
+            background-repeat: no-repeat;
+            background-size: contain;
+            width:100px;
+        }
+        /*----------- nav area end -----------*/
+
+        /*----------- main page start -----------*/
+        #container {
+            width: 80%;
+            margin: 0 auto;
+        }
+        #vimg {
+            width:100%;
+            height:42vh;
+            object-fit: cover;
+            margin: 0 auto;
+            background-color: #f6fce5;
+            padding:11vh 0;
+        }
+        #vimg img {
+            display:block;
+            width:100%;
+            height:50%;
+            object-fit: contain;
+            object-position: center;
+            margin: auto auto;
+        }
+        /* #area {
+            width:80%;
+            margin-bottom:20px;
+        } */
+        #select {
+            margin:0 auto;
+            margin-bottom: 20px;
+        }
+        #lot {
+            width:100%;
+            margin: 0 auto;
+            border: 4px solid #dfdfdf;
+            margin-bottom: 7vh;
+            box-sizing: border-box;
+        }
+        #lot #table0 {
+            width:100%;
+            height:650px;
+            background:url(../../static/parking-lot.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+        }
+        #lot #table0 a {
+            text-decoration: none;
+            font-size:2px;
+            color:rgba(2,2,2,0.1)
+        }
+        #lot .line {
+            margin: 0 auto;
+            padding:10px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        #lot .line .space {
+            width: 9.4%;
+            margin: 0 0.3%;
+            margin-bottom:10px;
+        }
+        #lot .line .space button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            height: 105px;
+        }
+        #lot .line .text {
+            color: #555;
+            margin-top:30px;
+            margin-right:10px;
+            font-size: 20px;
+            font-weight:700;
+        }
+        #lot .line .text span {
+            font-size:1.3em;
+            font-weight: 900;
+            color: #c9df00;
+        }
+        /* #lot .line:last-child {
+            margin-bottom: 0;
+        }
+        #lot .line .p-area {
+            width: 9%;
+            height: 100%;
+            border: 1px solid #d8d8d8;
+            float: left;
+            margin-right: 1%;
+        }
+        #lot .line .p-area:last-child {
+            margin-right: 0;
+        } */
+        #footer {
+            height: 20vh;
+            background-color: #333
+        }
+        #footer .fbox {
+            width: 80%;
+            margin: 0 auto;
+            padding-top: 7vh;
+        }
+        #footer .fbox a.glow-on-hover {
+            width: 450px;
+            height: 80px;
+            border: none;
+            outline: none;
+            color: #fff;
+            background: #111;
+            cursor: pointer;
+            position: relative;
+            z-index: 0;
+            border-radius: 10px;
+            margin: 0 auto;
+            display:block;
+            text-decoration: none;
+            text-align: center;
+        }
+        
+        #footer .fbox a.glow-on-hover:before {
+            content: '';
+            background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+            position: absolute;
+            top: -2px;
+            left:-2px;
+            background-size: 400%;
+            z-index: -1;
+            filter: blur(5px);
+            width: calc(100% + 4px);
+            height: calc(100% + 4px);
+            animation: glowing 20s linear infinite;
+            opacity: 0;
+            transition: opacity .3s ease-in-out;
+            border-radius: 10px;
+        }
+        
+        #footer .fbox a.glow-on-hover:active {
+            color: #000
+        }
+        
+        #footer .fbox a.glow-on-hover:active:after {
+            background: transparent;
+        }
+        
+        #footer .fbox a.glow-on-hover:hover:before {
+            opacity: 1;
+        }
+        
+        #footer .fbox a.glow-on-hover:after {
+            z-index: -1;
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: #111;
+            left: 0;
+            top: 0;
+            border-radius: 10px;
+        }
+        
+        @keyframes glowing {
+            0% { background-position: 0 0; }
+            50% { background-position: 400% 0; }
+            100% { background-position: 0 0; }
+        }
+
+        #footer .fbox a.glow-on-hover span {
+            display: block;
+            color: #fff;
+            font-weight:700;
+            font-size: 1.8em;
+            padding-top:21px;
+        }
+        #footer .fbox a.glow-on-hover:hover span {
+            color:#c9df00;
+            transition-duration: 3s;
+        }
+
+        
+        .clr::after {
+            content: "";
+            display: block;
+            clear: both;
+        }
+        /*----------- main page end -----------*/
+
+        /*----------- reserv page start -----------*/
+        #reserv {
+            width:80%;
+            margin:70px auto;
+        }
+        #reserv h5 {
+            font-size: 1.8em;
+            font-weight: 900;
+            color: #fff;
+            padding: 20px;
+            background-color: #c9df00;
+            border-radius: 10px;
+        }
+        #reserv form {
+            padding: 0 20px;
+            margin-top: 50px;
+        }
+        #reserv form p {
+            margin-bottom: 40px;
+            font-weight: 700;
+        }
+        #reserv form p span {
+            font-size: 1.3em;
+        }
+        #reserv form input[type: hidden] {
+            font-size: 1.2em;
+        }
+        #reserv form button.btn {
+            font-size: 1.2em
+            font-weight: 500;
+            border-color: #333;
+            background-color: #333;
+        }
+        #reserv form button.btn:hover {
+            background-color: #c9df00;
+            border-color: #c9df00;
+        }
+        /*----------- reserv page end -----------*/
+    </style>
+</head>
+<body>
+{% include "navbar.html" %}
+<!-- 기본 템플릿 안에 삽입될 내용 Start -->
+{% block content %}
+{% endblock %}
+<!-- 기본 템플릿 안에 삽입될 내용 End -->
+<!-- Bootstrap JS -->
+<script src="{% static 'bootstrap.min.js' %}"></script>
+<!--J Query-->
+<script src="{% static 'jquery-3.6.1.min.js' %}"></script>
+</body>
+</html>

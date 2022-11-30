@@ -1,0 +1,174 @@
+{% extends 'base.html' %}
+{% load pybo_filter %}
+{% load static %}
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+</head>
+
+<body>
+    <div id="wrap">
+        
+        {% if error != 'True' and error != '' %}
+        <script>
+            alert("{{ error }}");
+        </script>
+        {% endif %}
+        {% if error == 'True' %}
+        <script>
+            alert('예약 성공')
+        </script>
+        {% endif %}
+
+        <!-- 본문 영역 시작 -->
+        <div id="container">
+            <div id="vimg">
+                <img src="{% static 'logo-png.png' %}" alt="주차장">
+            </div>
+            </br>
+            </br>
+            </br>
+            <div id="select" class="">
+                <select aria-label="selectP" name="parkinfo" class="form-select form-select-lg" id="selectBox" onchange="ChangeValue()">
+                    <option value="0" disabled selected sytle="display:none;">주차장을 선택하세요.</option>
+                    <option value="1">주차장 A</option>
+                    <option value="2">주차장 B</option>
+                    <option value="3">주차장 C</option>
+                </select>
+            </div>
+            
+            <script>
+                window.onload = function ChangeValue(){
+                    $(document).ready(function() {
+                        $('#selectBox').change(function() {
+                            var result = $(' #selectBox option:selected').val();
+                            if (result == "1") {
+                                $('#table0').hide();
+                                $('#table1').show();
+                                $('#table2').hide();
+                                $('#table3').hide();
+                            }
+                            else if (result == "2")
+                            {
+                                $('#table0').hide();
+                                $('#table1').hide();
+                                $('#table2').show();
+                                $('#table3').hide();
+                            } 
+                            else if (result == "3")
+                            {
+                                $('#table0').hide();
+                                $('#table1').hide();
+                                $('#table2').hide();
+                                $('#table3').show();
+                            } 
+                            else {
+                                $('#table0').show();
+                                $('#table1').hide();
+                                $('#table2').hide();
+                                $('#table3').hide();
+                            }
+                            $("#selecBox").submit()
+                        }); 
+                        }); 
+                }
+            </script>
+            
+            
+            <div id="lot" class=""> <!--주차장 value 값 삽입-->
+                <div id='table0' class="clr">
+                    <a href="https://kr.freepik.com/free-photo/_14371081.htm#query=%EC%A3%BC%EC%B0%A8%EC%9E%A5&position=46&from_view=search&track=sph">Freepik</a>
+                </div>
+                    <div id='table1' style="display: none;" class="line line1 clr">
+                        <script>var count=0;</script>
+
+                        {% for park in parks.all %}
+
+                        {% if park.PARKID == 'A' %}
+                        {% if park.CARNUM == 'N' %}
+                        <form class="space" method="GET" action = "{% url 'pybo:detail' park.id %}" style="display: inline">
+                            <button type="submit"  {% if not user.is_authenticated %}disabled{% endif %}>{{ park.PARKSEAT }}번<br>사용가능</button>
+                        </form>
+                        <script> count=count+1; </script>
+        
+                        {% else %}
+                        <form class="space">
+                            <button type="submit" style="background-color: red;" disabled><strong>{{ park.PARKSEAT }}번<br>사용 중<br>{{ park.DATE }}</strong></button>
+                        </form>
+                        {% endif %}
+                        {% endif %}
+                        {% endfor %}
+                        <script>
+
+                            document.write("<p class='text'>"+"현재 주차 가능한 차량 수는 " +"<span>"+ count +"</span>"+ "대 입니다."+"</p>");
+                            
+                        </script>
+                    </div>
+                
+                    <div id='table2' style="display: none;" class="line line2 clr">
+                        <script>var count=0;</script>
+                        {% for park in parks.all %}
+                        {% if park.PARKID == 'B' %}
+                        {% if park.CARNUM == 'N' %}
+                        <form class="space" method="GET" action = "{% url 'pybo:detail' park.id %}" style="display: inline">
+                            <button {% if not user.is_authenticated %}disabled{% endif %} type="submit">{{ park.PARKSEAT }}번<br>사용가능</button>
+                        </form>
+                        <script> count=count+1; </script>
+                        {% else %}
+                        <form class="space">
+                            <button type="submit" style="background-color: red;" disabled>{{ park.PARKSEAT }}번<br>사용 중<br>{{ park.DATE }}</button>
+                        </form>
+                        {% endif %}
+                        
+                        {% endif %}
+                        {% endfor %}
+                        <script>
+                            
+                            document.write("<p class='text'>"+"현재 주차 가능한 차량 수는 " +"<span>"+ count +"</span>"+ "대 입니다."+"</p>");
+                            
+                        </script>
+                    </div>
+                    <div id='table3' style="display: none;" class="line line2 clr">
+                        <script>var count=0;</script>
+                        {% for park in parks.all %}
+                        {% if park.PARKID == 'C' %}
+                        {% if park.CARNUM == 'N' %}
+                        <form class="space" method="GET" action = "{% url 'pybo:detail' park.id %}" style="display: inline">
+                            <button {% if not user.is_authenticated %}disabled{% endif %} type="submit">{{ park.PARKSEAT }}번<br>사용가능</button>
+                        </form>
+                        <script> count=count+1; </script>
+                        {% else %}
+                        <form class="space">
+                            <button type="submit" style="background-color: red;" disabled>{{ park.PARKSEAT }}번<br>사용 중<br>{{ park.DATE }}</button>
+                        </form>
+                        {% endif %}
+                        
+                        {% endif %}
+                        {% endfor %}
+                        <script>
+                            
+                            document.write("<p class='text'>"+"현재 주차 가능한 차량 수는 " +"<span>"+ count +"</span>"+ "대 입니다."+"</p>");
+                            
+                        </script>   
+                    </div>
+                
+            </div>
+                
+        </div>
+        <!-- 본문 영역 종료 -->
+        <!-- 하단 링크 연결 시작 -->
+        <footer id="footer">
+            <div class="fbox">
+                <a class="glow-on-hover" href="#">
+                    <span>>> 보고서 페이지로 연결됩니다.</span>
+                </a>
+            </div>
+        </footer>
+        <!-- 하단 링크 연결 종료 -->
+    </div>
+</body>
+</html>
+{% endblock %}

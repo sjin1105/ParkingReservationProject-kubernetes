@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load pybo_filter %}
+{% load static %}
+{% block content %}
+
+<div id="reserv">
+
+    <h5 class="my-3 pb-2">주차장 자리 예약</h5>
+    <form method="POST" action = "{% url 'pybo:reservation' pi.id %}">
+        {% csrf_token %}
+        <p><span>주차 위치 : </span>{{ pi.PARKID }} {{ pi.PARKSEAT }}</p>
+        <p><span>차량 번호 : </span>{{ user.first_name }}</p>
+        <input type="hidden" name="PARKID" value= "{{ pi.PARKID }}">
+        <input type="hidden" name="PARKSEAT" value= "{{ pi.PARKSEAT }}">
+        <input type="hidden" name="CARNUM" value="{{ user.first_name }}">
+        <p><span>예약 일자 : </span><input type="date" name="DATE" id='Date'></p>
+        <button type="submit" class="btn btn-primary">예약하기</button>
+    </form>
+
+    <script>
+        var now_utc = Date.now()
+        var timeOff = new Date().getTimezoneOffset()*60000;
+        var today = new Date(now_utc-timeOff).toISOString().split("T")[0];
+        document.getElementById("Date").setAttribute("min", today);
+    </script>
+
+</div>
+{% endblock %}
