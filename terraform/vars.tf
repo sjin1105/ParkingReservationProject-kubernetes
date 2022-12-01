@@ -1,11 +1,11 @@
 variable "control_count" {
   type        = number
-  default     = "2"
+  default     = "1"
 }
 
 variable "service_count" {
   type        = number
-  default     = "4"
+  default     = "3"
 }
 
 variable "os_type" {
@@ -28,9 +28,13 @@ variable "socket" {
   default     = "1"
 }
 
+variable "test_memory" {
+  type        = number
+  default     = "4096"
+}
 variable "control_memory" {
   type        = number
-  default     = "2048"
+  default     = "4096"
 }
 
 variable "service_memory" {
