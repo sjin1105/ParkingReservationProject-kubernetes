@@ -1,56 +1,45 @@
-podTemplate(label: 'docker-build',
-  containers: [
-    containerTemplate(
-      name: 'git',
-      image: 'alpine/git',
-      command: 'cat',
-      ttyEnabled: true
-    ),
-    containerTemplate(
-      name: 'docker',
-      image: 'docker',
-      command: 'cat',
-      ttyEnabled: true
-    ),
-  ],
-  volumes: [
-    hostPathVolume(mountPath: '/var/run/docker.sock', hostPath: '/var/run/docker.sock'),
-  ]
-) {
-    node('docker-build') {
-        def dockerHubCred = dckr_pat_FtAhiAjbnyemDbzfhXhpvPK6mik
-        def appImage
-        stage('Checkout'){
-            container('git'){
-                checkout scm
-            }
-        }
-        stage('Build'){
-            container('docker'){
-                script {
-                    appImage = docker.build("sjin1105/node-hello-world")
-                }
-            }
-        }
-        stage('Test'){
-            container('docker'){
-                script {
-                    appImage.inside {
-                        sh 'npm install'
-                        sh 'npm test'
-                    }
-                }
-            }
-        }
-        stage('Push'){
-            container('docker'){
-                script {
-                    docker.withRegistry('https://registry.hub.docker.com', dockerHubCred){
-                        appImage.push("${env.BUILD_NUMBER}")
-                        appImage.push("latest")
-                    }
-                }
-            }
-        }
-    }
+pipeline{
+
+	agent any
+	environment {
+		DOCKERHUB_CREDENTIALS=credentials('dckr_pat_FtAhiAjbnyemDbzfhXhpvPK6mik')
+	}
+
+	stages {
+	    
+	    stage('gitclone') {
+
+			steps {
+				git 'https://github.com/seungjin-1105/ParkingReservationProject-kubernetes.git'
+			}
+		}
+
+		stage('Build') {
+
+			steps {
+				sh 'docker build -t sjin1105/docker:latest .'
+			}
+		}
+
+		stage('Login') {
+
+			steps {
+				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+			}
+		}
+
+		stage('Push') {
+
+			steps {
+				sh 'docker push sjin1105/docker:latest'
+			}
+		}
+	}
+
+	post {
+		always {
+			sh 'docker logout'
+		}
+	}
+
 }
