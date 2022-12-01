@@ -8,7 +8,9 @@ pipeline{
 		}
 		stage('build') {
 			steps {
-				echo 'build....'
+				script {
+					dockerImage = docker.build Dockerfile
+				}
 			}
 		}
 		stage('test') {
