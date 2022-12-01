@@ -2,4 +2,5 @@
 
 
 git clone https://github.com/scriptcamp/kubernetes-jenkins
+
 kubectl create namespace jenkins
