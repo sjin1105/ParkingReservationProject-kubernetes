@@ -1,4 +1,4 @@
-FROM --platform=$BUILDPLATFORM python:3.7-alpine AS builder
+FROM python:3.7-alpine AS builder
 EXPOSE 8000
 WORKDIR /django/mysite/
 COPY requirements.txt .
