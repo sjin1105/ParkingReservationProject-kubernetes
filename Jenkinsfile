@@ -18,7 +18,7 @@ podTemplate(label: 'docker-build',
   ]
 ) {
     node('docker-build') {
-        def dockerHubCred = <your_dockerhub_cred>
+        def dockerHubCred = dckr_pat_FtAhiAjbnyemDbzfhXhpvPK6mik
         def appImage
         stage('Checkout'){
             container('git'){
