@@ -14,7 +14,6 @@ provider "proxmox" {
   pm_parallel = 2
 }
 
-
 resource "proxmox_vm_qemu" "gui" {
   vmid = "200"
   name  = "test"
@@ -23,7 +22,7 @@ resource "proxmox_vm_qemu" "gui" {
   cpu = "kvm64"
   cores    = var.control_core
   sockets  = var.socket
-  memory   = var.control_memory
+  memory   = var.test_memory
   scsihw   = "virtio-scsi-pci"
   oncreate = false
   iso = "data3:iso/ubuntu-20.04.5-desktop-amd64.iso"
@@ -31,12 +30,12 @@ resource "proxmox_vm_qemu" "gui" {
   disk {
     size         = "50G"
     type         = "scsi"
-    storage      = "data1"
+    storage      = "data3"
   }
 
   network {
     model = "virtio"
-    bridge = "vmbr1"
+    bridge = "vmbr0"
   }
 }
 
@@ -53,8 +52,7 @@ resource "proxmox_vm_qemu" "control" {
   scsihw   = "virtio-scsi-pci"
   oncreate = false
   clone = var.clone
-  bootdisk = "scsi0"
-  ipconfig0 = "ip=192.168.1.21${count.index}/24,gw=192.168.1.1"
+  ipconfig0 = "ip=192.168.55.21${count.index}/24,gw=192.168.55.1"
   full_clone = "true"
 }
 
@@ -72,7 +70,6 @@ resource "proxmox_vm_qemu" "service" {
   scsihw   = "virtio-scsi-pci"
   oncreate = false
   clone = var.clone
-  bootdisk = "scsi0"
-  ipconfig0 = "ip=192.168.1.22${count.index}/24,gw=192.168.1.1"
+  ipconfig0 = "ip=192.168.55.22${count.index}/24,gw=192.168.55.1"
   full_clone = "true"
 }
