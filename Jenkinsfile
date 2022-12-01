@@ -6,5 +6,20 @@ pipeline{
 				git branch: 'main', credentialsId: 'sjin1105', url: 'https://github.com/seungjin-1105/ParkingReservationProject-kubernetes.git'
 			}
 		}
+		stage('build') {
+			steps {
+				echo 'build....'
+			}
+		}
+		stage('test') {
+			steps {
+				echo 'test....'
+			}
+		}
+		stage('deploy') {
+			steps {
+				echo 'deploy....'
+			}
+		}
 	}
 }
