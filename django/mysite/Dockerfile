@@ -1,9 +1,9 @@
 FROM --platform=$BUILDPLATFORM python:3.7-alpine AS builder
 EXPOSE 8000
-WORKDIR /django/mysite
+WORKDIR /django/mysite/
 COPY requirements.txt .
 RUN pip3 install -r requirements.txt --no-cache-dir
-COPY . /django/mysite
+COPY ./django/mysite/ /django/
 ENTRYPOINT ["python3"] 
 CMD ["manage.py", "runserver", "0.0.0.0:8000"]
 
