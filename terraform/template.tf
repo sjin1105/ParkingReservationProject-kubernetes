@@ -25,10 +25,10 @@ resource "proxmox_vm_qemu" "hello_world" {
   oncreate = "false"
   clone = "ubuntu-tmp"
   bootdisk = "scsi0"
-  ipconfig0 = "ip=192.168.1.20/24,gw=192.168.1.1"
+  ipconfig0 = "ip=192.168.55.20/24,gw=192.168.55.1"
 
   network {
     model = "virtio"
-    bridge = "vmbr1"
+    bridge = "vmbr0"
   }
 }
