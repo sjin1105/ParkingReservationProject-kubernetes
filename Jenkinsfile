@@ -9,7 +9,7 @@ pipeline{
 		stage('build') {
 			steps {
 				script {
-					dockerImage = docker.build Dockerfile
+					dockerImage = docker.build('sjin1105/django')
 				}
 			}
 		}
