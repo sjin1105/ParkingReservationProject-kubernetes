@@ -2,6 +2,7 @@ node {
      stage('Clone repository') {
          checkout scm
      }
+     step([$class: 'DockerBuilderPublisher', cleanImages: false, cleanupWithJenkinsJobDelete: false, cloud: '', dockerFileDirectory: 'dockerfile', fromRegistry: [], pushCredentialsId: 'sjin1105', pushOnSuccess: false, tagsString: ''])
      stage('Build image') {
          app = docker.build("sjin1105/django_image")
      }
@@ -10,7 +11,7 @@ node {
              app.push("latest")
          }
      }
-     step([$class: 'DockerBuilderPublisher', cleanImages: false, cleanupWithJenkinsJobDelete: false, cloud: '', dockerFileDirectory: 'dockerfile', fromRegistry: [], pushCredentialsId: 'sjin1105', pushOnSuccess: false, tagsString: ''])
+     
 }
 
 stage('Build image') {
