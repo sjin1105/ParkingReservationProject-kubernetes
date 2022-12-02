@@ -1,4 +1,4 @@
-FROM python:3.7-alpine AS builder
+FROM python:3.7-alpine
 EXPOSE 8000
 WORKDIR /django/mysite/
 COPY requirements.txt .
