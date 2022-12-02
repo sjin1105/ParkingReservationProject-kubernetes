@@ -1,27 +1,26 @@
-pipeline{
-	agent any
-	stages {    
-		stage('gitclone') {
-			steps {
-				git branch: 'main', credentialsId: 'sjin1105', url: 'https://github.com/seungjin-1105/ParkingReservationProject-kubernetes.git'
-			}
-		}
-		stage('build') {
-			steps {
-				script {
-					dockerImage = docker.build('sjin1105/django')
-				}
-			}
-		}
-		stage('test') {
-			steps {
-				echo 'test....'
-			}
-		}
-		stage('deploy') {
-			steps {
-				echo 'deploy....'
-			}
-		}
-	}
+node {
+     stage('Clone repository') {
+         checkout scm
+     }
+     stage('Build image') {
+         app = docker.build("gasbugs/flask-example")
+     }
+     stage('Push image') {
+         docker.withRegistry('https://registry.hub.docker.com', 'docker-hub') {
+             app.push("${env.BUILD_NUMBER}")
+             app.push("latest")
+         }
+     }
+}
+
+stage('Build image') {
+  app = docker.build("gasbugs/flask-example")
+}
+
+stage('Push image') {
+  docker.withRegistry('https://registry.hub.docker.com', 'docker-hub') 
+  {
+     app.push("${env.BUILD_NUMBER}")
+     app.push("latest")
+  }
 }
