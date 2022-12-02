@@ -10,6 +10,7 @@ node {
              app.push("latest")
          }
      }
+     step([$class: 'DockerBuilderPublisher', cleanImages: false, cleanupWithJenkinsJobDelete: false, cloud: '', dockerFileDirectory: 'dockerfile', fromRegistry: [], pushCredentialsId: 'sjin1105', pushOnSuccess: false, tagsString: ''])
 }
 
 stage('Build image') {
