@@ -7,19 +7,8 @@ node {
      }
      stage('Push image') {
          docker.withRegistry('https://registry.hub.docker.com', 'docker-hub') {
-             app.push("django:1.0")
+             app.push("1.0")
          }
      }
      
-}
-
-stage('Build image') {
-  app = docker.build("gasbugs/flask-example")
-}
-
-stage('Push image') {
-  docker.withRegistry('https://registry.hub.docker.com', 'docker-hub') 
-  {
-     app.push("latest")
-  }
 }
