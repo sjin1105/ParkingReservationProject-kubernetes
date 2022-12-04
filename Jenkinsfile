@@ -7,7 +7,7 @@ node {
      }
      stage('Push image') {
          docker.withRegistry('https://registry.hub.docker.com', 'docker-hub') {
-             app.push("sjin1105/django_image:1.0")
+             app.push("django_image:1.0")
          }
      }
      
