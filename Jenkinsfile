@@ -3,11 +3,11 @@ node {
          checkout scm
      }
      stage('Build image') {
-         app = docker.build("sjin1105/django_image")
+         app = docker.build("django")
      }
      stage('Push image') {
          docker.withRegistry('https://registry.hub.docker.com', 'docker-hub') {
-             app.push("django_image:1.0")
+             app.push("django:1.0")
          }
      }
      
