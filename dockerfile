@@ -1,22 +1,14 @@
-FROM --platform=$BUILDPLATFORM python:3.7-alpine AS builder
+FROM ubuntu:latest
 EXPOSE 8000
 WORKDIR /django/mysite/
 COPY requirements.txt .
+RUN apt-get update
+RUN apt-get -y install libmysqlclient-dev
+RUN apt-get -y install python3-dev mysql-client build-essential
+RUN apt-get -y install python3-pip
 RUN pip3 install -r requirements.txt --no-cache-dir
-COPY ./django/mysite/ /django/
-ENTRYPOINT ["python3"] 
-CMD ["manage.py", "runserver", "0.0.0.0:8000"]
+COPY ./django/mysite/ .
 
-FROM builder as dev-envs
-RUN <<EOF
-apk update
-apk add git
-EOF
-
-RUN <<EOF
-addgroup -S docker
-adduser -S --shell /bin/bash --ingroup docker vscode
-EOF
-# install Docker tools (cli, buildx, compose)
-COPY --from=gloursdocker/docker / /
-CMD ["manage.py", "runserver", "0.0.0.0:8000"]
+COPY shell.sh .
+RUN chmod +x shell.sh
+CMD ["./shell.sh"]
