@@ -7,7 +7,7 @@ node {
      }
      stage('Push image') {
          docker.withRegistry('https://registry.hub.docker.com', 'docker-hub') {
-             app.push("1.0")
+             app.push("1.1")
          }
      }
      
