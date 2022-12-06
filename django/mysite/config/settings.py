@@ -85,7 +85,7 @@ DATABASES = {
         'NAME': 'test',
         'USER' : 'root',
         'PASSWORD' : 'toor',
-        'HOST' : '172.17.0.2',
+        'HOST' : 'mysql-master.default.svc.cluster.local',
         'PORT' : '3306',
     }
 }
