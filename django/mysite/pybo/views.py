@@ -36,7 +36,8 @@ def reservation(request, park_id):
             diff = get_object_or_404(Park, pk=park_id)
             check = list(Park.objects.filter(CARNUM=request.POST['CARNUM']))
             if diff.DATE == '3000-01-01' and not check:
-                form.save()
+                p = form.save(commit=False)
+                p.save(using='master')
             elif check:
                 print('error')
                 parks = Park.objects
