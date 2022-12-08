@@ -82,7 +82,7 @@ CRONJOBS = [
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'slave',
+        'NAME': 'django',
         'USER' : 'django',
         'PASSWORD' : 'django',
         'HOST' : '10.233.1.20',
@@ -90,7 +90,7 @@ DATABASES = {
     }
     'master': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'master',
+        'NAME': 'djangom',
         'USER' : 'django',
         'PASSWORD' : 'django',
         'HOST' : 'mysql-master.default.svc.cluster.local',
