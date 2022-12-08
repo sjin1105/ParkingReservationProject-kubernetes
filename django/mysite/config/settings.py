@@ -82,12 +82,20 @@ CRONJOBS = [
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'test',
-        'USER' : 'root',
-        'PASSWORD' : 'toor',
-        'HOST' : 'mysql-master.default.svc.cluster.local',
+        'NAME': 'slave',
+        'USER' : 'django',
+        'PASSWORD' : 'django',
+        'HOST' : '10.233.1.20',
         'PORT' : '3306',
     }
+    'master': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'master',
+        'USER' : 'django',
+        'PASSWORD' : 'django',
+        'HOST' : 'mysql-master.default.svc.cluster.local',
+        'PORT' : '3306',
+    },
 }
 
 
