@@ -90,7 +90,7 @@ DATABASES = {
     }
     'master': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'djangom',
+        'NAME': 'django',
         'USER' : 'django',
         'PASSWORD' : 'django',
         'HOST' : 'mysql-master.default.svc.cluster.local',
