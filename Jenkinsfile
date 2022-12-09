@@ -7,7 +7,7 @@ node {
      }
      stage('Push image') {
          docker.withRegistry('https://registry.hub.docker.com', 'docker-hub') {
-             app.push("4.0")
+             app.push("$BUILD_NUMBER")
          }
      }
      
