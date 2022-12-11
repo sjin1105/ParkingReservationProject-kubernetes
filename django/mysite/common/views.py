@@ -12,7 +12,10 @@ def signup(request):
             username = form.cleaned_data.get('username')
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)  # 사용자 인증
-            login(request, user, backend='django.contrib.auth.backends.ModelBackend')  # 로그인
+            if not user:
+                # render/redirect as you please - user=None means that given credentials didn't pass to any User
+            else:
+                login(request, user)
             return redirect('index')
     else:
         form = UserForm()
