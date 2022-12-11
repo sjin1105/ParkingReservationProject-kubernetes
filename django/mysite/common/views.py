@@ -14,6 +14,9 @@ def signup(request):
             user = authenticate(username=username, password=raw_password)  # 사용자 인증
             if user:
                 login(request, user)
+                print(username)
+                print(raw_password)
+                print(user)
             else:
                 print('error')
             return redirect('index')
