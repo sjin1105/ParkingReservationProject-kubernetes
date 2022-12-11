@@ -12,7 +12,7 @@ def signup(request):
             username = form.cleaned_data.get('username')
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)  # 사용자 인증
-            login(request, user)  # 로그인
+            login(request, user, backend='django.contrib.auth.backends.ModelBackend')  # 로그인
             return redirect('index')
     else:
         form = UserForm()
