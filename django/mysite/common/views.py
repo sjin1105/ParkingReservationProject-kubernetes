@@ -13,7 +13,6 @@ def signup(request):
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)  # 사용자 인증
             if not user:
-                # render/redirect as you please - user=None means that given credentials didn't pass to any User
             else:
                 login(request, user)
             return redirect('index')
