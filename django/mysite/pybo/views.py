@@ -10,7 +10,7 @@ from django.contrib import messages
 
 # 메인 페이지
 def index(request):
-    parks = Park.objects.using("master")
+    parks = Park.objects.using("slave")
     context = { 'parks': parks, 'error' : '' }
     return render(request, 'pybo/main_page.html', context )
 
@@ -36,8 +36,7 @@ def reservation(request, park_id):
             diff = get_object_or_404(Park, pk=park_id)
             check = list(Park.objects.filter(CARNUM=request.POST['CARNUM']))
             if diff.DATE == '3000-01-01' and not check:
-                p = form.save(commit=False)
-                p.save(using='master')
+                form.save()
             elif check:
                 print('error')
                 parks = Park.objects
