@@ -12,10 +12,6 @@ def signup(request):
             username = form.cleaned_data.get('username')
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)  # 사용자 인증
-            print(username)
-            print(raw_password)
-            print(user)
-       
             login(request, user)
             
                 
