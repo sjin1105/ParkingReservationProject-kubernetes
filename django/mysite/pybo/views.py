@@ -10,7 +10,7 @@ from django.contrib import messages
 
 # 메인 페이지
 def index(request):
-    parks = Park.objects
+    parks = Park.objects.using("master")
     context = { 'parks': parks, 'error' : '' }
     return render(request, 'pybo/main_page.html', context )
 
