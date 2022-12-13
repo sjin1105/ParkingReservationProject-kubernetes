@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: mysql-sts-slave1
+spec:
+  selector:
+    matchLabels:
+      app: mysql-slave
+  serviceName: mysql-sts-slave1
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: mysql-slave
+    spec:
+      containers:
+      - name: mysql-slave
+        image: mysql:8.0
+        env:
+        - name: MYSQL_ALLOW_EMPTY_PASSWORD
+          value: "1"
+        - name: MYSQL_DATABASE
+          value: django
+        - name: MYSQL_USER
+          value: django
+        - name: MYSQL_PASSWORD
+          value: django
+        volumeMounts:
+        - name: mysql
+          mountPath: /mnt/mysql.sql
+        - name: data
+          mountPath: /var/lib/mysql
+        - name: config-map
+          mountPath: /etc/mysql/conf.d
+        ports:
+        - name: mysql
+          containerPort: 3306
+      volumes:
+      - name: mysql
+        hostPath:
+          type: FileOrCreate
+          path: /home/user/mysql.sql
+      - name: config-map
+        configMap:
+          name: mysql-slave1
+  volumeClaimTemplates:
+  - metadata:
+      name: data
+    spec:
+      accessModes: ["ReadWriteMany"]
+      resources:
+        requests:
+          storage: 1Gi
+      storageClassName: nfs-client
