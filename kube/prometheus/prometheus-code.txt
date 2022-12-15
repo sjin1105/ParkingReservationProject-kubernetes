@@ -1,0 +1,16 @@
+helm intall
+
+curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
+chmod 700 get_helm.sh
+./get_helm.sh
+
+
+prometheus & grafana
+
+kubectl create namespace monitor
+helm repo add prometheus-community htpps://prometheus-community.github.io/helm-charts
+helm repo update
+helm install prom prometheus-community/kube-prometheus-stack -f prometheus-grafana.yaml -n monitor
+
+id : admin
+pw : prom-operator
