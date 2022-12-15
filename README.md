@@ -11,3 +11,4 @@ https://www.jenkins.io/doc/book/installing/kubernetes/
 
 https://velog.io/@repush/Statefulset
 
+ubuntu-20.04.5-live-server-amd64.iso
