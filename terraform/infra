@@ -4,12 +4,12 @@ sudo apt update
 wget https://cloud-images.ubuntu.com/focal/current/focal-server-cloudimg-amd64.img
 sudo apt update -y && sudo apt install libguestfs-tools -y
 sudo virt-customize -a focal-server-cloudimg-amd64.img --install qemu-guest-agent
-sudo qm create 9000 --name "ubuntu-tmp" --memory 1024 --cores 1 --net0 virtio,bridge=vmbr1
-sudo qm importdisk 9000 focal-server-cloudimg-amd64.img data3 -format qcow2
-sudo qm set 9000 --scsihw virtio-scsi-pci --scsi0 data3:9000/vm-9000-disk-0.qcow2
+sudo qm create 9000 --name "ubuntu-tmp" --memory 1024 --cores 1 --net0 virtio,bridge=vmbr0
+sudo qm importdisk 9000 focal-server-cloudimg-amd64.img local -format qcow2
+sudo qm set 9000 --scsihw virtio-scsi-pci --scsi0 local:9000/vm-9000-disk-0.qcow2
 sudo qm resize 9000 scsi0 50G
 sudo qm set 9000 --boot c --bootdisk scsi0
-sudo qm set 9000 --ide2 data3:cloudinit
+sudo qm set 9000 --ide2 local:cloudinit
 sudo qm set 9000 --agent enabled=1
 sudo qm set 9000 --ciuser="user" --cipassword="user"
 sudo qm set 9000 --sshkey ~/.ssh/id_rsa.pub
