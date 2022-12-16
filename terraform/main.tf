@@ -8,9 +8,9 @@ terraform {
 }
 
 provider "proxmox" {
-  pm_api_url = "https://192.168.55.182:8006/api2/json"
-  pm_api_token_id = "sjin1105@pam!token_id"
-  pm_api_token_secret = "43915eff-9d8a-422c-ab4b-98e602dc14d9"
+  pm_api_url = "https://192.168.55.240:8006/api2/json"
+  pm_api_token_id = "sjin1105@pam!new_token_id"
+  pm_api_token_secret = "439-422c"
   pm_parallel = 2
 }
 
@@ -25,12 +25,12 @@ resource "proxmox_vm_qemu" "gui" {
   memory   = var.test_memory
   scsihw   = "virtio-scsi-pci"
   oncreate = false
-  iso = "data3:iso/ubuntu-20.04.5-desktop-amd64.iso"
+  iso = "local:iso/ubuntu-20.04.5-desktop-amd64.iso"
   
   disk {
-    size         = "50G"
+    size         = "30G"
     type         = "scsi"
-    storage      = "data3"
+    storage      = "local"
   }
 
   network {
