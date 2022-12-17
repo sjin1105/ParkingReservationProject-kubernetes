@@ -88,14 +88,7 @@ DATABASES = {
         'HOST' : 'mysql-master.default.svc.cluster.local',
         'PORT' : '3306',
     },
-    'slave': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'django',
-        'USER' : 'django',
-        'PASSWORD' : 'django',
-        'HOST' : '10.233.1.20',
-        'PORT' : '3306',
-    },
+    
 }
 
 
