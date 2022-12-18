@@ -12,5 +12,6 @@ sudo qm set 9000 --boot c --bootdisk scsi0
 sudo qm set 9000 --ide2 local:cloudinit
 sudo qm set 9000 --agent enabled=1
 sudo qm set 9000 --ciuser="user" --cipassword="user"
+sudo ssh-keygen
 sudo qm set 9000 --sshkey ~/.ssh/id_rsa.pub
 sudo qm template 9000
