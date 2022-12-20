@@ -8,7 +8,7 @@ chmod 700 get_helm.sh
 prometheus & grafana
 
 kubectl create namespace monitor
-helm repo add prometheus-community htpps://prometheus-community.github.io/helm-charts
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
 helm repo update
 helm install prom prometheus-community/kube-prometheus-stack -f prometheus-grafana.yaml -n monitor
 
