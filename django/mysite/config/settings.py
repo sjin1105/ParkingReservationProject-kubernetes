@@ -85,7 +85,7 @@ DATABASES = {
         'NAME': 'django',
         'USER' : 'django',
         'PASSWORD' : 'python3.10',
-        'HOST' : 'mycluster.mysql-cluster.svc.cluster.local',
+        'HOST' : 'mycluster.mysql-cluster.svc',
         'PORT' : '6447',
     },
     
