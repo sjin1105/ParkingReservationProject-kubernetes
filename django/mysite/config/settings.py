@@ -85,8 +85,8 @@ DATABASES = {
         'NAME': 'django',
         'USER' : 'django',
         'PASSWORD' : 'python3.10',
-        'HOST' : 'database-1.cdonjmje9or9.ap-northeast-2.rds.amazonaws.com',
-        'PORT' : '3306',
+        'HOST' : 'mycluster.mysql-cluster',
+        'PORT' : '6447',
     },
     
 }
