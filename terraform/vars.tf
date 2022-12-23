@@ -15,12 +15,12 @@ variable "os_type" {
 
 variable "control_core" {
   type        = number
-  default     = "2"
+  default     = "4"
 }
 
 variable "service_core" {
   type        = number
-  default     = "1"
+  default     = "2"
 }
 
 variable "socket" {
@@ -34,12 +34,12 @@ variable "test_memory" {
 }
 variable "control_memory" {
   type        = number
-  default     = "4096"
+  default     = "6144"
 }
 
 variable "service_memory" {
   type        = number
-  default     = "2048"
+  default     = "4096"
 }
 
 variable "clone" {
