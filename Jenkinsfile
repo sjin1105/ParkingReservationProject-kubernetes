@@ -19,7 +19,7 @@ node {
 			 sh('git config --global user.name "sjin110550"')
 			 sh('git commit -m "$BUILD_NUMBER"')
 			 sh('git remote add origin https://github.com/seungjin-1105/ParkingReservationProject-kubernetes.git')
-			 sh('git branch -M main)
+			 sh('git branch -M main')
 			 sh('git push -u origin main')
          }
      }
