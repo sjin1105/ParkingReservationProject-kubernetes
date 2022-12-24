@@ -18,7 +18,7 @@ node {
 			 sh('git config --global user.email "sjin110550@gmail.com"')
 			 sh('git config --global user.name "sjin110550"')
 			 sh('git commit -m "$BUILD_NUMBER"')
-
+			 sh('git status')
 			 sh('git branch -M main')
 			 sh('git push -u origin main')
          }
