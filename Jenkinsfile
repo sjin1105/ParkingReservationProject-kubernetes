@@ -13,7 +13,7 @@ node {
      }
      stage('K8S Manifest Update') {
          withCredentials([usernamePassword(credentialsId: 'git_key', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
-			 sh('sed -i "s|image: *|image: sjin1105/django:$BUILD_NUMBER|g" ./ArgoCD/django/django-deploy.yaml')
+
 
 			 sh('git add .')
 			 sh('git config --global user.email "sjin110550@gmail.com"')
@@ -21,6 +21,7 @@ node {
 			 sh('git commit -m "$BUILD_NUMBER"')
 			 sh('git checkout main')
 			 sh('git pull https://github.com/seungjin-1105/ParkingReservationProject-kubernetes.git')
+			 sh('sed -i "s|image: *|image: sjin1105/django:$BUILD_NUMBER|g" ./ArgoCD/django/django-deploy.yaml')
 			 sh('git push https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/seungjin-1105/ParkingReservationProject-kubernetes.git')
                     }
      }
