@@ -1,7 +1,7 @@
 node {
      stage('Clone repository') {
 	 sh('cd .. && rm -rf ParkingReservationProject-kubernetes')
-         sh('mkdir kube && cd kube')
+         sh('cd kube')
 	 sh('git clone https://github.com/seungjin-1105/ParkingReservationProject-kubernetes.git && cd ParkingReservationProject-kubernetes')
      }
      stage('Build image') {
