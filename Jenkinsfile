@@ -16,6 +16,7 @@ node {
 			sh 'git config --global user.email "user@test.com"'
             sh 'git config --global user.name "Jenkins"'
             sh 'git config --global push.default simple'
+			sh('git checkout -b master')
 			sh('git push https://${GIT_USERNAME}:${GIT_PASSWORD}@https://github.com/seungjin-1105/ParkingReservationProject-kubernetes.git')
          }
      }
