@@ -18,6 +18,7 @@ node {
 			 sh('git config --global user.email "sjin110550@gmail.com"')
 			 sh('git config --global user.name "sjin110550"')
 			 sh('git commit -m "$BUILD_NUMBER"')
+			 sh('git push origin main')
              sh('git push https://${GIT_USERNAME}:${GIT_PASSWORD}@https://github.com/seungjin-1105/ParkingReservationProject-kubernetes.git')
                     }
      }
