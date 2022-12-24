@@ -13,6 +13,8 @@ node {
      }
      stage('K8S Manifest Update') {
          withCredentials([usernamePassword(credentialsId: 'git_key', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
+			 sh('git add .')
+			 sh('git commit -m "$BUILD_NUMBER"')
              sh('git push https://${GIT_USERNAME}:${GIT_PASSWORD}@https://github.com/seungjin-1105/ParkingReservationProject-kubernetes.git')
                     }
      }
