@@ -13,16 +13,14 @@ node {
      }
     stage('K8S Manifest Update') {
         steps {
-            git credentialsId: '{Credential ID}',
+            git credentialsId: 'git_key',
                 url: 'https://github.com/seungjin-1105/ParkingReservationProject-kubernetes.git',
-                branch: 'master'
+                branch: 'main'
 
             sh "sed -i 's/image/image: sjin1105/django:$BUILD_NUMBER/g' ./ArgoCD/django/django-deploy.yaml"
-            sh "git add deployment.yaml"
+            sh "git add ."
             sh "git commit -m '[UPDATE] django $BUILD_NUMBER image versioning'"
-            sshagent(credentials: ['{k8s-manifest repository credential ID}']) {
-                sh "git remote set-url origin git@https://github.com/seungjin-1105/ParkingReservationProject-kubernetes.git"
-                sh "git push -u origin main"
+            sh "git push origin main"
              }
         }
         post {
