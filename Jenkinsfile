@@ -19,8 +19,8 @@ node {
 
 			 sh('git checkout main')
 			 sh('git pull https://github.com/seungjin-1105/ParkingReservationProject-kubernetes.git')
-			 sh('git commit -m "$BUILD_NUMBER"')
 			 sh('sed -i "s|image: *|image: sjin1105/django:$BUILD_NUMBER|g" ./ArgoCD/django/django-deploy.yaml')
+			 sh('git commit -m "$BUILD_NUMBER"')
 			 sh('git push https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/seungjin-1105/ParkingReservationProject-kubernetes.git')
                     }
      }
