@@ -1,8 +1,6 @@
 node {
      stage('Clone repository') {
-	 sh('cd .. && rm -rf ParkingReservationProject-kubernetes')
-         sh('cd kube && rm -rf ParkingReservationProject-kubernetes')
-	 sh('git clone https://github.com/seungjin-1105/ParkingReservationProject-kubernetes.git && cd ParkingReservationProject-kubernetes')
+	 checkout scm
      }
      stage('Build image') {
          app = docker.build("sjin1105/django")
