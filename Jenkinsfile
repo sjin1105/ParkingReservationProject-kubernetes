@@ -11,25 +11,16 @@ node {
 	     app.push("latest")
          }
      }
-    stage('K8S Manifest Update') {
-        steps {
-            git credentialsId: 'git_key',
-                url: 'https://github.com/seungjin-1105/ParkingReservationProject-kubernetes.git',
-                branch: 'main'
+     stage('K8S Manifest Update') {
+         steps {
+             git credentialsId: 'git_key',
+                 url: 'https://github.com/seungjin-1105/ParkingReservationProject-kubernetes.git',
+                 branch: 'main'
 
-            sh "sed -i 's/image/image: sjin1105/django:$BUILD_NUMBER/g' ./ArgoCD/django/django-deploy.yaml"
-            sh "git add ."
-            sh "git commit -m '[UPDATE] django $BUILD_NUMBER image versioning'"
-            sh "git push origin main"
+             sh "sed -i 's/image/image: sjin1105/django:$BUILD_NUMBER/g' ./ArgoCD/django/django-deploy.yaml"
+             sh "git add ."
+             sh "git commit -m '[UPDATE] django $BUILD_NUMBER image versioning'"
+             sh "git push origin main"
              }
-        }
-        post {
-                failure {
-                  echo 'K8S Manifest Update failure !'
-                }
-                success {
-                  echo 'K8S Manifest Update success !'
-                }
-        }
-    }
+     }
 }
