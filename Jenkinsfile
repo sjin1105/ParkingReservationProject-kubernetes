@@ -15,7 +15,7 @@ node {
          withCredentials([usernamePassword(credentialsId: 'git_key', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
 			 sh('git pull https://github.com/seungjin-1105/ParkingReservationProject-kubernetes.git')
 			 sh('sed -i "s|image: *|image: sjin1105/django:$BUILD_NUMBER|g" ./ArgoCD/django/django-deploy.yaml')
-			 sh('git checkout main')
+
 			 sh('git add .')
 			 sh('git config --global user.email "sjin110550@gmail.com"')
 			 sh('git config --global user.name "sjin110550"')
