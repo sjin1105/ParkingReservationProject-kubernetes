@@ -54,7 +54,7 @@ def reservation(request, park_id):
             return render(request, 'pybo/main_page.html', context)
         
         parks = Park.objects
-        context = { 'error' : 'True.', 'parks': parks }
+        context = { 'error' : '예약 완료', 'parks': parks }
         return render(request, 'pybo/main_page.html', context)
     else:
         form = ParkForm()
