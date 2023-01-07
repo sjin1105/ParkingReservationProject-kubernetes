@@ -7,6 +7,8 @@
 ## Prometheus와 Grafana를 사용한 모니터링 환경 구성
 ## Elasticsearch, Fluent Bit, Kibana를 사용한 EFK 로깅 환경 구성
 
+![pipeline](https://user-images.githubusercontent.com/76959621/211154582-1379a656-ae30-4c0f-86fa-54a4d926e13a.png)
+
 | AS-IS | TO-BE |
 |-------|-------|
 |번화가에 치중된 교통량으로 인해 번화가에는 주차장의 공간이 부족|입·출차 시 번호판을 인식하여 자동으로 체크해 Database에 빈 자리를 업데이트 함
@@ -43,5 +45,3 @@
 <li>Kibana (Ver. 7.9.3)</li>
 <li>Prometheus (Ver. 4.8)</li>
 <li>Grafana (Ver. 6.48)</li>
-
-![pipeline](https://user-images.githubusercontent.com/76959621/211154582-1379a656-ae30-4c0f-86fa-54a4d926e13a.png)
