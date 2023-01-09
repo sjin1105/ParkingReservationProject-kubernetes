@@ -18,12 +18,12 @@
 
 |NAME|ROLE|
 |----|----|
-|sjin1105|PM
+|이승진|PM
 |강대현|WEB, DB, CI/CD
 |김세윤|WEB, DB, CI/CD
-|PARK JU|INPRA, WEB
-|SON|INPRA, CI/CD
-|PARK YUN|INPRA
+|박주희|INPRA, WEB
+|손다래|INPRA, CI/CD
+|박윤지|INPRA
 
 환경
 <li>Ubuntu (Ver. 20.04 LTS focal)</li>
