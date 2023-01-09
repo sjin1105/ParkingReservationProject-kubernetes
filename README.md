@@ -19,7 +19,7 @@
 |NAME|ROLE|
 |----|----|
 |sjin1105|PM
-|KANG|WEB, DB, CI/CD
+|강대현|WEB, DB, CI/CD
 |KIM|WEB, DB, CI/CD
 |PARK JU|INPRA, WEB
 |SON|INPRA, CI/CD
