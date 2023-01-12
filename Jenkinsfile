@@ -3,7 +3,7 @@ node {
 	 checkout scm
      }
      stage('Build image') {
-         app = docker.build("sjin1105/django", "--network=host")
+         app = docker.build("sjin1105/django", "--net=host")
      }
      stage('Push image') {
          docker.withRegistry('https://registry.hub.docker.com', 'docker-hub') {
